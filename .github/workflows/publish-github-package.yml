@@ -41,7 +41,9 @@ jobs:
           scope: "@infinityhealth"
 
       - name: Publish to GitHub Package Registry
-        run: npm publish
+        run: |
+          STREAM_NAME="${{ github.event.client_payload.stream }}"
+          npm publish --tag $STREAM_NAME
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}

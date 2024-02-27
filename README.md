@@ -1,4 +1,4 @@
-Infinity API JS Client, generated using [openapi-client-axios](https://github.com/openapistack/openapi-client-axios) from the [OpenAPI v3 definition](https://github.com/openapistack/openapi-client-axios).
+Infinity API JS Client, generated using openapi-client-axios from the OpenAPI v3 definition.
 
 # Installation
 
@@ -15,9 +15,9 @@ Infinity API JS Client, generated using [openapi-client-axios](https://github.co
 
    For Node.js projects see the [GitHub Docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package).
 
-4. Install the package
+4. Install the package. Use the appropriate tag `dev`, `uat` or `latest` (main).
    ```sh
-   bun add @infinityhealth/api-js-client -D
+   bun add @infinityhealth/api-js-client@dev -D
    # or npm, yarn, pnpm etc.
    ```
 
