@@ -1,4 +1,4 @@
-Infinity API JS Client, generated using <a href="https://github.com/openapistack/openapi-client-axios">openapi-client-axios</a> from the <a href="https://github.com/openapistack/openapi-client-axios">OpenAPI v3 definition</a>.
+Infinity API JS Client, generated using [openapi-client-axios](https://github.com/openapistack/openapi-client-axios) from the [OpenAPI v3 definition](https://github.com/openapistack/openapi-client-axios).
 
 # Installation
 
