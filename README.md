@@ -1,16 +1,4 @@
-<p align="center">
-	<a href="https://infinity.health">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="./static/infinity-dark-logo.svg">
-			<source media="(prefers-color-scheme: light)" srcset="./static/infinity-light-logo.svg">
-			<img alt="Infinity Health" src="./static/infinity-light-logo.svg" height="120">
-		</picture>
-	</a>
-</p>
-
-<p align="center">
-  Infinity API JS Client, generated using <a href="https://github.com/openapistack/openapi-client-axios">openapi-client-axios</a> from the <a href="https://github.com/openapistack/openapi-client-axios">OpenAPI v3 definition</a>.
-</p>
+Infinity API JS Client, generated using <a href="https://github.com/openapistack/openapi-client-axios">openapi-client-axios</a> from the <a href="https://github.com/openapistack/openapi-client-axios">OpenAPI v3 definition</a>.
 
 # Installation
 
