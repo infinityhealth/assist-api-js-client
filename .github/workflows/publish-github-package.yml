@@ -35,16 +35,10 @@ jobs:
           COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
           COMMIT_URL="${{ github.event.client_payload.commit_url }}"
 
-          # Bump version without committing
-          npm version patch --no-git-tag-version
+          # Bump version, create commit (ignoring the automatic tag)
+          npm version patch -m "chore: bump version to %s"
 
-          # Stage the updated package.json
-          git add package.json
-
-          # Create the initial version commit
-          git commit -m "chore: bump version"
-
-          # Amend the commit with the detailed message
+          # Amend the commit with additional details
           git commit --amend -m "chore: bump version to $(git describe --tags --abbrev=0)
 
           $COMMIT_MESSAGE
