@@ -30,9 +30,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
 
-      - name: Bump package version
+      - name: Bump package version and append commit message
         run: |
-          npm version patch -m "chore: bump version to %s"
+          STREAM_NAME="${{ github.event.client_payload.stream }}"
+          COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
+          npm version patch -m "chore: bump version to %s\n\n$COMMIT_MESSAGE"
 
       - uses: actions/setup-node@v4
         with:
