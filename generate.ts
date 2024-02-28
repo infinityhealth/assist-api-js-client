@@ -2,7 +2,7 @@ import { $ } from "bun"
 import yaml from "js-yaml"
 import { Document } from "openapi-client-axios"
 
-const url = "https://raw.githubusercontent.com/infinityhealth/infinity-api/main/openapi.yml"
+const url = process.env.OPENAPI_URL
 const json_dest = "src/lib/openapi.json"
 const ts_dest = "src/lib/openapi.d.ts"
 

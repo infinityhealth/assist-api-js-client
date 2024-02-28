@@ -28,7 +28,8 @@ jobs:
       - name: Build package
         run: bun package
         env:
-          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          OPENAPI_URL: ${{ github.event.client_payload.openapi_url }}
 
       - name: Bump package version and append commit message with URL
         run: |
@@ -49,8 +50,8 @@ jobs:
           STREAM_NAME="${{ github.event.client_payload.stream }}"
           npm publish --tag $STREAM_NAME
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Create and push git tag
         run: |
