@@ -1,8 +1,6 @@
 name: Node.js Package
 
 on:
-  release:
-    types: [created]
   repository_dispatch:
     types: [openapi_spec_updated]
 
@@ -36,9 +34,27 @@ jobs:
           STREAM_NAME="${{ github.event.client_payload.stream }}"
           COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
           COMMIT_URL="${{ github.event.client_payload.commit_url }}"
-          printf "chore: bump version to %%s\n\n$COMMIT_MESSAGE\n\nSee the commit: $COMMIT_URL" > commitmsg.txt
-          git commit --all --file=commitmsg.txt
-          git push
+
+          # Bump version without committing
+          npm version patch --no-git-tag-version
+
+          # Stage the updated package.json
+          git add package.json
+
+          # Create the initial version commit
+          git commit -m "chore: bump version"
+
+          # Amend the commit with the detailed message
+          git commit --amend -m "chore: bump version to $(git describe --tags --abbrev=0)
+
+          $COMMIT_MESSAGE
+
+          See the commit: $COMMIT_URL"
+
+      - name: Bump package version and append commit message
+        run: |
+          STREAM_NAME="${{ github.event.client_payload.stream }}"
+          COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
 
       - uses: actions/setup-node@v4
         with:
@@ -57,6 +73,7 @@ jobs:
         run: |
           STREAM_NAME="${{ github.event.client_payload.stream }}"
           GIT_TAG=$(date +'%Y%m%d%H%M%S')-$STREAM_NAME
+
           git tag $GIT_TAG
           git push origin $GIT_TAG
 
