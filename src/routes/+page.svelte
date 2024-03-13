@@ -9,14 +9,16 @@
 
 {#await client.get_sso_configs()}
   Loading...
-{:then { data }}
-  <section>
-    <header>
-      <span>GET</span>
-      /sso_configs
-    </header>
-    <pre>{@html highlight(data)}</pre>
-  </section>
+{:then result}
+  {#if result.isOk()}
+    <section>
+      <header>
+        <span>GET</span>
+        /sso_configs
+      </header>
+      <pre>{@html highlight(result)}</pre>
+    </section>
+  {/if}
 {/await}
 
 <style>
