@@ -32,7 +32,7 @@ jobs:
       - name: Bump package version and append commit message with URL
         run: |
           STREAM_NAME="${{ github.event.client_payload.stream }}"
-          COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
+          COMMIT_MESSAGE=$(echo "${{ github.event.client_payload.commit_message }}" | sed 's/\\n/\n/g')
           COMMIT_URL="${{ github.event.client_payload.commit_url }}"
 
           # Bump version, create commit (ignoring the automatic tag)
