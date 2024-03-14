@@ -21,11 +21,7 @@
 			"svelte": "./dist/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*"],
 	"peerDependencies": {
 		"openapi-client-axios": "^7.5.4",
 		"neverthrow": "^6.1.0"
