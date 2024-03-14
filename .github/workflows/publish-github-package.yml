@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [openapi_spec_updated]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
