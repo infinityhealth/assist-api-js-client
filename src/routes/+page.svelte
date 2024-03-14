@@ -1,8 +1,23 @@
 <script lang="ts">
-  import { init } from "$lib/index.js";
-  import { highlight } from "$lib/utils.js";
+  import { init } from "$lib/index.js"
+  import { highlight } from "$lib/utils.js"
 
-  const client = init("https://infinity-dev-api.infinity.health");
+  const client = init("https://infinity-dev-api.infinity.health")
+  // ^ Initialize the client with the base URL (uses the base URL from the OpenAPI definition by default)
+
+  async function example() {
+    const result = await client.get_sso_configs()
+
+    result.map((data) => {
+      console.log(data)
+      // ^ Result is typed as AxiosResponse with API response
+    })
+
+    result.mapErr((err) => {
+      console.log(err.response?.data.errors)
+      // ^ Error is typed as AxiosError with API error response
+    })
+  }
 </script>
 
 <h1>Infinity API</h1>
@@ -18,6 +33,8 @@
       </header>
       <pre>{@html highlight(result)}</pre>
     </section>
+  {:else}
+    <p>Sorry, an error occurred: {result.error.message}</p>
   {/if}
 {/await}
 

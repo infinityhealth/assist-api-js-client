@@ -4,8 +4,8 @@ import definition from "./openapi.json"
 
 import type { Client } from "./openapi.d.ts"
 export type { Components } from "./openapi.d.ts"
+import { type AxiosError, isAxiosError } from "axios"
 import "./types.d.ts"
-
 export function init(base_url?: string) {
 	const client = new OpenAPIClientAxios({
 		definition: definition as unknown as Document,
