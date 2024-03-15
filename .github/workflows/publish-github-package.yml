@@ -50,31 +50,23 @@ jobs:
 
           See the commit: $COMMIT_URL"
 
-      - name: Bump package version and append commit message
-        run: |
-          STREAM_NAME="${{ github.event.client_payload.stream }}"
-          COMMIT_MESSAGE="${{ github.event.client_payload.commit_message }}"
-
       - uses: actions/setup-node@v4
         with:
           registry-url: https://npm.pkg.github.com/
           scope: "@infinityhealth"
 
       - name: Publish to GitHub Package Registry
-        run: |
-          STREAM_NAME="${{ github.event.client_payload.stream }}"
-          npm publish --tag $STREAM_NAME
+        run: npm publish --tag ${{ github.event.client_payload.stream }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Create and push git tag
         run: |
-          STREAM_NAME="${{ github.event.client_payload.stream }}"
-          GIT_TAG=$(date +'%Y%m%d%H%M%S')-$STREAM_NAME
+          GIT_TAG=$(date +'%Y%m%d%H%M%S')-${{ github.event.client_payload.stream }}
 
           git tag $GIT_TAG
           git push origin $GIT_TAG
 
       - name: Push changes to repo
-        run: git push
+        run: git push origin HEAD:${{ github.ref }}
