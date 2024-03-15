@@ -1,6 +1,6 @@
 import { $ } from "bun"
 import yaml from "js-yaml"
-import { Document } from "openapi-client-axios"
+import type { Document } from "openapi-client-axios"
 
 const url = process.env.OPENAPI_URL
 const json_dest = "src/lib/openapi.json"

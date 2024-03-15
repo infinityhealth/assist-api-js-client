@@ -8,7 +8,7 @@
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
-		"package": "bun ./generate && svelte-kit sync && svelte-package && publint",
+		"package": "bun ./src/generate && svelte-kit sync && svelte-package && publint",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
@@ -21,11 +21,7 @@
 			"svelte": "./dist/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*"],
 	"peerDependencies": {
 		"openapi-client-axios": "^7.5.4",
 		"neverthrow": "^6.1.0"
