@@ -40,12 +40,12 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "OPENAPI_URL=${{ github.event.inputs.openapi_url }}" >> $GITHUB_ENV
             echo "STREAM_NAME=${{ github.event.inputs.stream }}" >> $GITHUB_ENV
-            echo "COMMIT_MESSAGE=$(echo '${{ github.event.inputs.commit_message }}' | sed 's/\\n/\n/g')" >> $GITHUB_ENV
+            echo "COMMIT_MESSAGE=$(echo \"${{ github.event.inputs.commit_message }}\")" >> $GITHUB_ENV
             echo "COMMIT_URL=${{ github.event.inputs.commit_url }}" >> $GITHUB_ENV
           else
             echo "OPENAPI_URL=${{ github.event.client_payload.openapi_url }}" >> $GITHUB_ENV
             echo "STREAM_NAME=${{ github.event.client_payload.stream }}" >> $GITHUB_ENV
-            echo "COMMIT_MESSAGE=$(echo '${{ github.event.client_payload.commit_message }}' | sed 's/\\n/\n/g')" >> $GITHUB_ENV
+            echo "COMMIT_MESSAGE=$(echo \"${{ github.event.client_payload.commit_message }}\")" >> $GITHUB_ENV
             echo "COMMIT_URL=${{ github.event.client_payload.commit_url }}" >> $GITHUB_ENV
           fi
 
