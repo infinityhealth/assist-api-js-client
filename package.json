@@ -1,6 +1,6 @@
 {
 	"name": "@infinityhealth/api-js-client",
-	"version": "1.2.27",
+	"version": "1.2.28",
 	"repository": {
 		"url": "https://github.com/infinityhealth/api-js-client.git"
 	},
