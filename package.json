@@ -21,35 +21,32 @@
 			"svelte": "./dist/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*"],
 	"peerDependencies": {
-		"openapi-client-axios": "^7.5.4",
-		"neverthrow": "^6.1.0"
+		"openapi-client-axios": "7.5.4",
+		"neverthrow": "6.1.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.6.1",
-		"@sveltejs/adapter-auto": "^3.1.1",
-		"@sveltejs/kit": "^2.5.4",
-		"@sveltejs/package": "^2.3.0",
-		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"@types/bun": "^1.0.8",
-		"@types/js-yaml": "^4.0.9",
-		"axios": "^1.6.7",
-		"highlight.js": "^11.9.0",
-		"js-yaml": "^4.1.0",
-		"lefthook": "^1.6.6",
-		"openapi-zod-client": "^1.16.2",
-		"openapicmd": "^2.3.1",
-		"publint": "^0.2.7",
-		"svelte": "^4.2.12",
-		"svelte-check": "^3.6.7",
-		"tslib": "^2.6.2",
-		"typescript": "^5.4.2",
-		"vite": "^5.1.6"
+		"@biomejs/biome": "1.7.3",
+		"@sveltejs/adapter-auto": "3.2.1",
+		"@sveltejs/kit": "2.5.10",
+		"@sveltejs/package": "2.3.1",
+		"@sveltejs/vite-plugin-svelte": "3.1.0",
+		"@types/bun": "1.1.3",
+		"@types/js-yaml": "4.0.9",
+		"axios": "1.7.2",
+		"highlight.js": "11.9.0",
+		"js-yaml": "4.1.0",
+		"lefthook": "1.6.12",
+		"openapi-zod-client": "1.18.1",
+		"openapicmd": "2.3.1",
+		"publint": "0.2.8",
+		"svelte": "4.2.17",
+		"svelte-check": "3.7.1",
+		"tslib": "2.6.2",
+		"typed-openapi": "0.4.1",
+		"typescript": "5.4.5",
+		"vite": "5.2.11"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

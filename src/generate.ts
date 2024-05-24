@@ -25,14 +25,14 @@ try {
 	throw new Error(`Failed to parse ${url} as YAML: ${e}`)
 }
 
-await $`echo ${JSON.stringify(json)} > ${json_schema_dest}`
+await $`echo ${JSON.stringify(json, null, 2)} > ${json_schema_dest}`
 
 await $`bunx openapicmd typegen ${json_schema_dest} > ${ts_schema_dest}`
-await $`bunx openapi-zod-client ${json_schema_dest} -o ${zod_schema_dest} -t '${zod_template}' --export-schemas`
+await $`bunx openapi-zod-client ${json_schema_dest} --media-type-expr="['application/vnd.api+json', 'application/json'].includes(mediaType)" -o ${zod_schema_dest} -t '${zod_template}' --export-schemas`
 
 const zod_schema_content = await readFile(zod_schema_dest, "utf8")
 const cleaned_zod_schema_content = zod_schema_content.replace(/\.passthrough\(\)/g, "")
 
 await writeFile(zod_schema_dest, cleaned_zod_schema_content)
 
-await $`bunx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true ${ts_schema_dest} ${json_schema_dest} ${zod_schema_dest}`
+await $`bunx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true ${zod_schema_dest}`
