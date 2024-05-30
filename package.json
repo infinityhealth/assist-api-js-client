@@ -21,14 +21,11 @@
 			"svelte": "./dist/index.js"
 		}
 	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
+	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*"],
 	"peerDependencies": {
 		"openapi-client-axios": "7.5.4",
-		"neverthrow": "6.1.0"
+		"neverthrow": "6.1.0",
+		"zod": "3.23.6"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
@@ -50,7 +47,8 @@
 		"tslib": "2.6.2",
 		"typed-openapi": "0.4.1",
 		"typescript": "5.4.5",
-		"vite": "5.2.11"
+		"vite": "5.2.11",
+		"zod": "3.23.6"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

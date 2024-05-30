@@ -12,7 +12,7 @@ export const schemas = {
 }
 
 {{#each endpoints}}
-export const {{alias}} = {
+const {{alias}} = {
   method: "{{method}}",
   path: "{{path}}",
   {{#if requestFormat}}
