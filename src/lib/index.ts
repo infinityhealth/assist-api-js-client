@@ -5,7 +5,7 @@ import definition from "./openapi.json"
 import type { Client } from "./openapi.d.ts"
 export type { Components, Paths } from "./openapi.d.ts"
 export type { APIError } from "./types.d.ts"
-export { paths, schemas } from "./openapi.zod.js"
+export * from "./openapi.zod.js"
 import "./types.d.ts"
 
 export function init(base_url?: string) {

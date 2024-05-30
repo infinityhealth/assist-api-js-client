@@ -5,14 +5,8 @@ const {{@key}} = {{{this}}}
 
 {{/each}}
 
-export const schemas = {
-{{#each schemas}}
-	{{@key}},
-{{/each}}
-}
-
 {{#each endpoints}}
-const {{alias}} = {
+export const {{alias}} = {
   method: "{{method}}",
   path: "{{path}}",
   {{#if requestFormat}}
@@ -54,9 +48,3 @@ const {{alias}} = {
 } as const
 
 {{/each}}
-
-export const paths = {
-  {{#each endpoints}}
-  {{alias}},
-  {{/each}}
-}
