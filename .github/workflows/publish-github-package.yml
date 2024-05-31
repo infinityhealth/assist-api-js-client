@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       openapi_url:
+        default: "https://raw.githubusercontent.com/infinityhealth/infinity-api/dev/openapi.yml"
         description: "URL of the OpenAPI Specification"
         required: true
       stream:
