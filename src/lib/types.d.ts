@@ -1,6 +1,5 @@
 import type { AxiosError } from "axios"
 import type { Result } from "neverthrow"
-import * as openapi from "openapi-client-axios"
 
 export type APIError = AxiosError<{
 	errors: {

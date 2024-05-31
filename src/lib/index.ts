@@ -1,11 +1,10 @@
 import { err, ok } from "neverthrow"
 import { type Document, OpenAPIClientAxios } from "openapi-client-axios"
-import definition from "./openapi.json"
+import definition from "./openapi.json" assert { type: "json" }
 
 import type { Client } from "./openapi.d.ts"
 export type { Components, Paths } from "./openapi.d.ts"
 export type { APIError } from "./types.d.ts"
-import "./types.d.ts"
 
 export function init(base_url?: string) {
 	const client = new OpenAPIClientAxios({
