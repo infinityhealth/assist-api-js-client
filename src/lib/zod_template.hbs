@@ -1,50 +1,6 @@
 import { z } from "zod"
 
 {{#each schemas}}
-const {{@key}} = {{{this}}}
-
-{{/each}}
-
-{{#each endpoints}}
-export const {{alias}} = {
-  method: "{{method}}",
-  path: "{{path}}",
-  {{#if requestFormat}}
-  request_format: "{{requestFormat}}",
-  {{/if}}
-  {{#if parameters}}
-  parameters: {
-    {{#each parameters}}
-    "{{name}}": {
-      {{#if description}}
-      description: "{{description}}",
-      {{/if}}
-      {{#if type}}
-      type: "{{type}}",
-      {{/if}}
-      schema: {{{schema}}}
-    },
-    {{/each}}
-  },
-  {{/if}}
-  response: {{{response}}},
-  {{#if errors.length}}
-  errors: {
-    {{#each errors}}
-      {{#ifeq status "default" }}
-      "default":
-      {{else}}
-      {{status}}:
-      {{/ifeq}}
-      {
-        {{#if description}}
-        description: "{{description}}", 
-        {{/if}}
-        schema: {{{schema}}}
-      },
-    {{/each}}
-  }
-  {{/if}}
-} as const
+export const {{@key}} = {{{this}}}
 
 {{/each}}
