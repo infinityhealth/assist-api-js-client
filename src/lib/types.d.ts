@@ -1,5 +1,5 @@
 import type { AxiosError } from "axios"
-import type { Result } from "neverthrow"
+import type { ResultAsync } from "neverthrow"
 
 export type APIError = AxiosError<{
 	errors: {
@@ -11,5 +11,5 @@ export type APIError = AxiosError<{
 }>
 
 declare module "openapi-client-axios" {
-	export type OperationResponse<Response> = Promise<Result<Response, APIError>>
+	export type OperationResponse<Response> = ResultAsync<Response, APIError>
 }
