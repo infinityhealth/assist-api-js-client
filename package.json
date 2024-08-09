@@ -47,7 +47,7 @@
     "@sveltejs/vite-plugin-svelte": "3.1.1",
     "@types/bun": "1.1.6",
     "@types/js-yaml": "4.0.9",
-    "axios": "1.7.2",
+    "axios": "git@github.com:hansottowirtz/axios.git#cf-workers-fetch",
     "highlight.js": "11.10.0",
     "js-yaml": "4.1.0",
     "lefthook": "1.7.1",
