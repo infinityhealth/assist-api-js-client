@@ -13,7 +13,7 @@ export function init(base_url?: string) {
 	}).initSync<Client>()
 
 	client.interceptors.response.use(
-		(response) => ok(response.data) as never,
+		(response) => ok(response) as never,
 		(error) => err(error),
 	)
 
