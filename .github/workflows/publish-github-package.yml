@@ -65,7 +65,7 @@ jobs:
       - name: Build package
         run: bun package
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump package version and append commit message with URL
         run: |
