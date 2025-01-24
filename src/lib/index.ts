@@ -9,7 +9,7 @@ export type { APIError } from "./types.d.ts"
 export function init(base_url?: string) {
 	const client = new OpenAPIClientAxios({
 		definition: definition as unknown as Document,
-		axiosConfigDefaults: { baseURL: base_url },
+		axiosConfigDefaults: { withCredentials: true, baseURL: base_url },
 	}).initSync<Client>()
 
 	client.interceptors.response.use(
