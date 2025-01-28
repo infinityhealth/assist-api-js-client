@@ -18,6 +18,8 @@ export type APIError<
 		  },
 > = AxiosError<T>
 
+export type OperationResponse<Response> = ResultAsync<AxiosResponse<Response>, APIError>
+
 declare module "openapi-client-axios" {
 	export type OperationResponse<Response> = ResultAsync<AxiosResponse<Response>, APIError>
 }

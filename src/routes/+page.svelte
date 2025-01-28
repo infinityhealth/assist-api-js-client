@@ -14,8 +14,14 @@
     })
 
     result.mapErr((err) => {
-      console.log(err.response?.data.errors)
-      // ^ Error is typed as AxiosError with API error response
+      if (err.response?.data) {
+        if ("errors" in err.response?.data) {
+          console.log(err.response?.data.errors)
+        } else {
+          console.log(err.response?.data.error)
+        }
+        // ^ Error is typed as AxiosError with API error response
+      }
     })
   }
 </script>

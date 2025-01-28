@@ -4,7 +4,7 @@ import definition from "./openapi.json" assert { type: "json" }
 
 import type { Client } from "./openapi.d.ts"
 export type { Components, Paths, PathsDictionary, OperationMethods, Client } from "./openapi.d.ts"
-export type { APIError } from "./types.d.ts"
+export type { APIError, OperationResponse } from "./types.d.ts"
 
 export function init(base_url?: string) {
 	const client = new OpenAPIClientAxios({
