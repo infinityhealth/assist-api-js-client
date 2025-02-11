@@ -5,24 +5,10 @@
   const client = init("https://infinity-dev-api.infinity.health")
   // ^ Initialize the client with the base URL (uses the base URL from the OpenAPI definition by default)
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function example() {
     const result = await client.get_sso_configs()
-
-    result.map((data) => {
-      console.log(data)
-      // ^ Result is typed as AxiosResponse with API response
-    })
-
-    result.mapErr((err) => {
-      if (err.response?.data) {
-        if ("errors" in err.response?.data) {
-          console.log(err.response?.data.errors)
-        } else {
-          console.log(err.response?.data.error)
-        }
-        // ^ Error is typed as AxiosError with API error response
-      }
-    })
+    console.log(result)
   }
 </script>
 
@@ -31,17 +17,16 @@
 {#await client.get_sso_configs()}
   Loading...
 {:then result}
-  {#if result.isOk()}
-    <section>
-      <header>
-        <span>GET</span>
-        /sso_configs
-      </header>
-      <pre>{@html highlight(result)}</pre>
-    </section>
-  {:else}
-    <p>Sorry, an error occurred: {result.error.message}</p>
-  {/if}
+  <section>
+    <header>
+      <span>GET</span>
+      /sso_configs
+    </header>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    <pre>{@html highlight(result)}</pre>
+  </section>
+{:catch}
+  <p>Sorry, an error occurred.</p>
 {/await}
 
 <style>
@@ -71,5 +56,6 @@
   pre {
     margin: 0;
     padding: 15px 20px;
+    overflow: auto;
   }
 </style>

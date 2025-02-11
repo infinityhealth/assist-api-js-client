@@ -1,7 +1,6 @@
-Infinity API JS Client, generated using openapi-client-axios from the OpenAPI v3 definition and wrapped with neverthrow.
+Infinity API JS Client, generated using openapi-client-axios from the OpenAPI v3 definition.
 
 - [openapi-client-axios](https://github.com/openapistack/openapi-client-axios) - Generates the main API client using Axios
-- [neverthrow](https://github.com/supermacro/neverthrow) - Used in to wrap API responses for easier error-handling
 
 # Installation
 
@@ -44,15 +43,6 @@ import { client } from "some/path/to/client"
 
 async function make_api_call() {
   const sso_configs = await client.get_sso_configs()
-  // ^ returns a neverthrow Result with data from API call
-
-  sso_configs.map((data) => {
-    // ^ Use Result.map to work with an ok response
-  })
-
-  sso_configs.mapErr((errror) => {
-    // ^ Use Result.mapErr to work with an error response
-  })
 }
 ```
 

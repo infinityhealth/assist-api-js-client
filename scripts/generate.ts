@@ -6,9 +6,9 @@ import type { Document } from "openapi-client-axios"
 const url = process.env.OPENAPI_URL
 
 if (!url) {
-	console.log("🚨 Please provide an `OPENAPI_URL` environment variable")
-	console.log("👋 Goodbye!")
-	process.exit(0)
+  console.log("🚨 Please provide an `OPENAPI_URL` environment variable")
+  console.log("👋 Goodbye!")
+  process.exit(0)
 }
 
 const json_schema_dest = "src/lib/openapi.json"
@@ -19,21 +19,21 @@ const zod_template = "src/lib/zod_template.hbs"
 let json: Document
 
 if (url.startsWith("http")) {
-	const request = await fetch(url, {
-		headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` },
-	})
+  const request = await fetch(url, {
+    headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` },
+  })
 
-	if (!request.ok) {
-		throw new Error(`Failed to fetch ${url}: ${request.status} ${request.statusText}`)
-	}
+  if (!request.ok) {
+    throw new Error(`Failed to fetch ${url}: ${request.status} ${request.statusText}`)
+  }
 
-	try {
-		json = yaml.load(await request.text()) as Document
-	} catch (e) {
-		throw new Error(`Failed to parse ${url} as YAML: ${e}`)
-	}
+  try {
+    json = yaml.load(await request.text()) as Document
+  } catch (e) {
+    throw new Error(`Failed to parse ${url} as YAML: ${e}`)
+  }
 } else {
-	json = (await import(url)) as Document
+  json = (await import(url)) as Document
 }
 
 await $`echo ${JSON.stringify(json, null, 2)} > ${json_schema_dest}`
