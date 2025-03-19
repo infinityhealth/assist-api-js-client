@@ -3,7 +3,7 @@
   "name": "@liaisongroup/assist-api-js-client",
   "license": "MIT",
   "repository": {
-    "url": "git+https://github.com/liaisongroup/assist-api-js-client.git"
+    "url": "git+https://github.com/infinityhealth/assist-api-js-client.git"
   },
   "scripts": {
     "dev": "bun ./scripts/dev",
