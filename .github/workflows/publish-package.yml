@@ -27,8 +27,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  build:
+  build_and_publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -52,33 +55,18 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.name 'GitHub Actions'
-          git config --global user.email 'noreply@infinity.health'
+          git config --global user.email 'noreply@liaison.link'
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
       - name: Build package
         run: bun package
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-      id-token: write
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Publish to NPM Package Registry
-        run: npm publish --tag $STREAM_NAME --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.READ_API_REPO_GITHUB_TOKEN }}
 
       - name: Bump package version and append commit message with URL
         run: |
-
           # Bump version, create commit (ignoring the automatic tag)
           npm version patch -m "chore: bump version to %s"
 
@@ -88,6 +76,17 @@ jobs:
           $COMMIT_MESSAGE
 
           See the commit: $COMMIT_URL"
+
+      - name: Setup Node.js for NPM publish
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish to NPM Package Registry
+        run: npm publish --tag $STREAM_NAME --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create and push git tag
         run: |

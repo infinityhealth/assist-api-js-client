@@ -1,21 +1,25 @@
-Infinity API JS Client, generated using openapi-client-axios from the OpenAPI v3 definition.
+<img src="./hero.svg" alt="Hero" />
 
-- [openapi-client-axios](https://github.com/openapistack/openapi-client-axios) - Generates the main API client using Axios
+<p align="center">
+  🏌️‍♂️ Liaison Assist API JS Client
+  <br />
+  Generated using <a href="https://github.com/openapistack/openapi-client-axios">openapi-client-axios</a> from the OpenAPI v3 definition
+</p>
 
 # Installation
 
 Using your node runtime of choice install the package.
 
-bun add @infinityhealth/api-js-client -D
+bun add @liaisongroup/assist-api-js-client -D
 
 # Usage
 
 Create a file such as `client.ts` to store an instance of our JS Client.
 
 ```ts
-import { init } from "@infinityhealth/api-js-client"
+import { init } from "@liaisongroup/assist-api-js-client"
 
-export const client = init("https://infinity-dev-api.infinity.health")
+export const client = init("https://assist-dev-api.liaison.link")
 // ^ returns a full typed client, with autocomplete for all methods, parameters etc.
 ```
 
@@ -42,6 +46,6 @@ If you want to work with a local OpenAPI definition (ie. you have the `infinity-
 
 ```json
 {
-  "@infinityhealth/api-js-client": "../api-js-client"
+  "@liaisongroup/assist-api-js-client": "../assist-api-js-client"
 }
 ```

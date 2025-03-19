@@ -2,7 +2,7 @@
   import { init } from "$lib/index.js"
   import { highlight } from "$lib/utils.js"
 
-  const client = init("https://infinity-dev-api.infinity.health")
+  const client = init("https://assist-dev-api.liaison.link")
   // ^ Initialize the client with the base URL (uses the base URL from the OpenAPI definition by default)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,7 +12,7 @@
   }
 </script>
 
-<h1>Infinity API</h1>
+<h1>Assist API</h1>
 
 {#await client.get_sso_configs()}
   Loading...
