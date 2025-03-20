@@ -1,36 +1,25 @@
-Infinity API JS Client, generated using openapi-client-axios from the OpenAPI v3 definition.
+<img src="./hero.svg" alt="Hero" />
 
-- [openapi-client-axios](https://github.com/openapistack/openapi-client-axios) - Generates the main API client using Axios
+<p align="center">
+  🏌️‍♂️ Liaison Assist API JS Client
+  <br />
+  Generated using <a href="https://github.com/openapistack/openapi-client-axios">openapi-client-axios</a> from the OpenAPI v3 definition
+</p>
 
 # Installation
 
-1. Setup a [Personal Access Token](https://github.com/settings/tokens) in order for your project to use this package.
-2. Add environment variable for the project to store your Personal Access Token (ie. `GITHUB_TOKEN=foo`)
-3. Configure your project to use GitHub Packages
+Using your node runtime of choice install the package.
 
-   If you're using the Bun runtime, create a `bunfig.toml` file:
-
-   ```toml
-   [install.scopes]
-   "@infinityhealth" = { token = "$GITHUB_TOKEN", url = "https://npm.pkg.github.com/" }
-   ```
-
-   For Node.js projects see the [GitHub Docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package).
-
-4. Install the package. Use the appropriate tag `dev`, `uat` or `latest` (main).
-   ```sh
-   bun add @infinityhealth/api-js-client@dev -D
-   # or npm, yarn, pnpm etc.
-   ```
+bun add @liaisongroup/assist-api-js-client -D
 
 # Usage
 
 Create a file such as `client.ts` to store an instance of our JS Client.
 
 ```ts
-import { init } from "@infinityhealth/api-js-client"
+import { init } from "@liaisongroup/assist-api-js-client"
 
-export const client = init("https://infinity-dev-api.infinity.health")
+export const client = init("https://assist-dev-api.liaison.link")
 // ^ returns a full typed client, with autocomplete for all methods, parameters etc.
 ```
 
@@ -57,6 +46,6 @@ If you want to work with a local OpenAPI definition (ie. you have the `infinity-
 
 ```json
 {
-  "@infinityhealth/api-js-client": "../api-js-client"
+  "@liaisongroup/assist-api-js-client": "../assist-api-js-client"
 }
 ```

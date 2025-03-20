@@ -1,0 +1,98 @@
+name: Node.js Package
+
+on:
+  repository_dispatch:
+    types: [openapi_spec_updated]
+  workflow_dispatch:
+    inputs:
+      openapi_url:
+        default: "https://raw.githubusercontent.com/infinityhealth/infinity-api/dev/openapi.yml"
+        description: "URL of the OpenAPI Specification"
+        required: true
+      stream:
+        description: "Stream name"
+        required: true
+        type: choice
+        options:
+          - dev
+          - latest
+      commit_message:
+        description: "Commit message"
+        required: false
+      commit_url:
+        description: "URL to the commit"
+        required: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup environment variables
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "OPENAPI_URL=${{ github.event.inputs.openapi_url }}" >> $GITHUB_ENV
+            echo "STREAM_NAME=${{ github.event.inputs.stream }}" >> $GITHUB_ENV
+            echo "COMMIT_MESSAGE=$(echo \"${{ github.event.inputs.commit_message }}\")" >> $GITHUB_ENV
+            echo "COMMIT_URL=${{ github.event.inputs.commit_url }}" >> $GITHUB_ENV
+          else
+            echo "OPENAPI_URL=${{ github.event.client_payload.openapi_url }}" >> $GITHUB_ENV
+            echo "STREAM_NAME=${{ github.event.client_payload.stream }}" >> $GITHUB_ENV
+            echo "COMMIT_MESSAGE=$(echo \"${{ github.event.client_payload.commit_message }}\")" >> $GITHUB_ENV
+            echo "COMMIT_URL=${{ github.event.client_payload.commit_url }}" >> $GITHUB_ENV
+          fi
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'noreply@liaison.link'
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build package
+        run: bun package
+        env:
+          GITHUB_TOKEN: ${{ secrets.READ_API_REPO_GITHUB_TOKEN }}
+
+      - name: Bump package version and append commit message with URL
+        run: |
+          # Bump version, create commit (ignoring the automatic tag)
+          npm version patch -m "chore: bump version to %s"
+
+          # Amend the commit with additional details
+          git commit --amend -m "chore: bump version to $(git describe --tags --abbrev=0)
+
+          $COMMIT_MESSAGE
+
+          See the commit: $COMMIT_URL"
+
+      - name: Setup Node.js for NPM publish
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish to NPM Package Registry
+        run: npm publish --tag $STREAM_NAME --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create and push git tag
+        run: |
+          GIT_TAG=$(date +'%Y%m%d%H%M%S')-$STREAM_NAME
+          git tag $GIT_TAG
+          git push origin $GIT_TAG
+
+      - name: Push changes to repo
+        run: git push origin HEAD:${{ github.ref }}
