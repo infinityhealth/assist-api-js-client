@@ -1,4 +1,4 @@
-<img src="./hero.svg" alt="Hero" />
+![Hero](https://raw.githubusercontent.com/infinityhealth/assist-api-js-client/HEAD/hero.svg)
 
 <p align="center">
   🏌️‍♂️ Liaison Assist API JS Client
