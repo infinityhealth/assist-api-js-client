@@ -36,18 +36,3 @@ async function make_api_call() {
   const sso_configs = await client.get_sso_configs()
 }
 ```
-
-# Working with a local OpenAPI definition
-
-If you want to work with a local OpenAPI definition (ie. you have the `infinity-api` repo setup), then you can:
-
-1. Clone this repo and install its dependencies
-2. Setup an `.env.local` file, with the absolute path to the OpenAPI file (ie. `OPENAPI_URL="/path/to/infinity-api/openapi.yaml"`)
-3. Run `bun dev` to start the development server. This will watch for changes to the OpenAPI file and regenerate the client as needed.
-4. From the front-end repo, reference this local repo instead of installing from remote. For example:
-
-```json
-{
-  "@liaisongroup/assist-api-js-client": "../assist-api-js-client"
-}
-```
