@@ -10,7 +10,9 @@
 
 Using your node runtime of choice install the package.
 
+```sh
 bun add @liaisongroup/assist-api-js-client -D
+```
 
 # Usage
 
